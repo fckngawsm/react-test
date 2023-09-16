@@ -1,14 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Register from "./Auth/Register";
+import Register from "../Auth/Register";
+import { Wrapper } from "./AppStyle";
+import Login from "../Auth/Login";
 
 function App() {
   return (
-    <div className="App">
+    <Wrapper>
       <Routes>
         <Route path="/sign-up" element={<Register />} />
+        <Route path="/sign-in" element={<Login />} />
       </Routes>
-    </div>
+    </Wrapper>
   );
 }
 

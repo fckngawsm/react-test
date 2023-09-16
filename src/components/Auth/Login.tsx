@@ -12,9 +12,9 @@ import {
 } from "./AuthStyles";
 import { useAppDispatch } from "../../redux-hooks";
 import { UserType } from "../../types/userType";
-import { registerUser } from "../../features/users/users-slice";
+import { loginUser, registerUser } from "../../features/users/users-slice";
 
-function Register() {
+function Login() {
   const dispatch = useAppDispatch();
   const navgiate = useNavigate();
   const {
@@ -24,42 +24,16 @@ function Register() {
   } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
     console.log(data);
-    dispatch(registerUser(data))
+    dispatch(loginUser(data))
       .unwrap()
       .then(() => {
-        navgiate("/sign-in");
+        navgiate("/");
       });
   };
   return (
     <>
-      <AuthTitle>Регистрация</AuthTitle>
+      <AuthTitle>Вход</AuthTitle>
       <AuthForm onSubmit={handleSubmit(onSubmit)}>
-        <AuthInput
-          autoComplete="none"
-          placeholder="Имя"
-          {...register("name", {
-            required: { value: true, message: "Вы забыли указать почту" },
-            minLength: { value: 2, message: "Слишком короткая почта" },
-            maxLength: { value: 40, message: "Слишком длинная почта" },
-          })}
-          type="text"
-        />
-        {errors.name && (
-          <AuthMessageError>{errors.name.message}</AuthMessageError>
-        )}
-        <AuthInput
-          autoComplete="none"
-          placeholder="Фамилия"
-          {...register("lastname", {
-            required: { value: true, message: "Вы забыли указать почту" },
-            minLength: { value: 2, message: "Слишком короткая почта" },
-            maxLength: { value: 40, message: "Слишком длинная почта" },
-          })}
-          type="text"
-        />
-        {errors.lastname && (
-          <AuthMessageError>{errors.lastname.message}</AuthMessageError>
-        )}
         <AuthInput
           autoComplete="none"
           placeholder="Почта"
@@ -88,12 +62,12 @@ function Register() {
         )}
         <AuthButton>Войти</AuthButton>
         <AuthText>
-          У вас есть аккаунт?
-          <AuthSpan to="/sign-in">Войти</AuthSpan>
+          У вас нет аккаунта?
+          <AuthSpan to="/sign-up">Зарегистрироваться</AuthSpan>
         </AuthText>
       </AuthForm>
     </>
   );
 }
 
-export default Register;
+export default Login;

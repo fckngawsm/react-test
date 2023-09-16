@@ -31,6 +31,19 @@ export const registerUser = createAsyncThunk<
   }
 );
 
+export const loginUser = createAsyncThunk<
+  UserType,
+  UserType,
+  { extra: Extra; rejectWithValue: string }
+>("@@auth/login", async (data, { extra: { client, api }, rejectWithValue }) => {
+  try {
+    const res = await client.post(api.LOGIN_USER, data);
+    return res.data;
+  } catch (error) {
+    return rejectWithValue("У вас случилась ошибка");
+  }
+});
+
 const UserSlice = createSlice({
   name: "@@user",
   initialState,
@@ -46,6 +59,10 @@ const UserSlice = createSlice({
         state.error = "cannot load data";
       })
       .addCase(registerUser.fulfilled, (state) => {
+        state.status = "received";
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.user = action.payload;
         state.status = "received";
       });
   },
