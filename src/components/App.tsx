@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Register from "./Auth/Register";
 
 function App() {
   return (
     <div className="App">
-      hhh
+      <Routes>
+        <Route path="/sign-up" element={<Register />} />
+      </Routes>
     </div>
   );
 }
