@@ -1,9 +1,23 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
-  width: 100%;
-  background-color: black;
-  color: white;
+  width: 1280px;
+  margin: 0 auto;
+  border-bottom: 1px solid grey;
+  padding: 10px 15px 20px;
+`;
+
+export const HeaderNavigation = styled.nav`
   display: flex;
   justify-content: space-between;
+`;
+
+export const HeaderLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  &:focus {
+    color: red;
+  }
 `;

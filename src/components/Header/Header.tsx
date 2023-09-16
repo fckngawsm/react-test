@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HeaderLink, HeaderNavigation, HeaderWrapper } from "./HeaderStyle";
 function Header() {
   return (
-    <header>
-      <nav>
-        <Link to="/goods">Товары</Link>
-        <Link to="/profile">Мой профиль</Link>
-      </nav>
-    </header>
+    <HeaderWrapper>
+      <HeaderNavigation>
+        <HeaderLink to="/goods">Товары</HeaderLink>
+        <HeaderLink to="/profile">Мой профиль</HeaderLink>
+      </HeaderNavigation>
+    </HeaderWrapper>
   );
 }
 

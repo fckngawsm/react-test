@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import Register from "../Auth/Register";
 import Login from "../Auth/Login";
 import Header from "../Header/Header";
+import "../../global.css";
+import Goods from "../GoodsList/GoodsList";
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
+          <Route path="/goods" element={<Goods />} />
         </Routes>
       </main>
     </div>

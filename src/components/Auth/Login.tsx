@@ -27,7 +27,7 @@ function Login() {
     dispatch(loginUser(data))
       .unwrap()
       .then(() => {
-        navgiate("/");
+        navgiate("/goods");
       });
   };
   return (
