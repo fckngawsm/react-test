@@ -10,19 +10,28 @@ import {
   CardPurchase,
   WrapperCard,
 } from "./GoodsCardStyle";
+import { GoodsType } from "../../types/goodsType";
 
-function GoodsCard() {
+interface GoodsCardProps extends GoodsType {}
+
+function GoodsCard({
+  categories,
+  imageUrl,
+  price,
+  quantity,
+  title,
+}: GoodsCardProps) {
   return (
     <WrapperCard>
       <CardImage
-        src={"https://ir.ozone.ru/s3/multimedia-d/wc700/6531789565.jpg"}
+        src={imageUrl}
         alt="book"
       />
       <CardInfromation>
-        <CardCategories>Книги</CardCategories>
-        <CardTitle>Мышь 21321 213 21321321321321</CardTitle>
+        <CardCategories>{categories}</CardCategories>
+        <CardTitle>{title}</CardTitle>
         <CardPurchase>
-          <CardPrice>20$</CardPrice>
+          <CardPrice>{price} руб.</CardPrice>
           <CardCart src={cart} alt="cart" />
         </CardPurchase>
       </CardInfromation>

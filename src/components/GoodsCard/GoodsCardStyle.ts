@@ -60,5 +60,4 @@ export const CardCart = styled.img`
   width: 23px;
   height: 23px;
   cursor: pointer;
-  margin-right: 40px;
 `;
