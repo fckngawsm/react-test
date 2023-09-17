@@ -11,6 +11,8 @@ import {
   WrapperCard,
 } from "./GoodsCardStyle";
 import { GoodsType } from "../../types/goodsType";
+import { useAppDispatch } from "../../redux-hooks";
+import { deleteProductById } from "../../features/goods/goods-slice";
 
 interface GoodsCardProps extends GoodsType {}
 
@@ -20,13 +22,16 @@ function GoodsCard({
   price,
   quantity,
   title,
+  id,
 }: GoodsCardProps) {
+  const dispatch = useAppDispatch();
+  function handleDeleteById(id: number) {
+    dispatch(deleteProductById(id));
+  }
   return (
     <WrapperCard>
-      <CardImage
-        src={imageUrl}
-        alt="book"
-      />
+      <CardImage src={imageUrl} alt="book" />
+      <button onClick={() => handleDeleteById(id)}>удалить</button>
       <CardInfromation>
         <CardCategories>{categories}</CardCategories>
         <CardTitle>{title}</CardTitle>

@@ -20,9 +20,22 @@ export const loadingAllGoods = createAsyncThunk<
   GoodsType[],
   undefined,
   { extra: Extra; rejectWithValue: string }
->("@@auth/register", async (_, { extra: { client, api }, rejectWithValue }) => {
+>("@@goods/loading", async (_, { extra: { client, api }, rejectWithValue }) => {
   try {
     const res = await client.get(api.LOADING_GOODS);
+    return res.data;
+  } catch (error) {
+    return rejectWithValue("У вас случилась ошибка");
+  }
+});
+
+export const deleteProductById = createAsyncThunk<
+  GoodsType,
+  number,
+  { extra: Extra; rejectWithValue: string }
+>("@@goods/delete", async (id, { extra: { client, api }, rejectWithValue }) => {
+  try {
+    const res = await client.delete(api.DELETE_PRODUCT_BY_ID(id));
     return res.data;
   } catch (error) {
     return rejectWithValue("У вас случилась ошибка");
@@ -46,6 +59,14 @@ const GoodsSlice = createSlice({
       .addCase(loadingAllGoods.fulfilled, (state, action) => {
         state.status = "received";
         state.list = action.payload;
+      })
+      .addCase(deleteProductById.fulfilled, (state, action) => {
+        state.status = "received";
+        const newProduct = state.list.filter(
+          (item) => item.id != action.payload.id
+        );
+
+        state.list = newProduct;
       });
   },
 });

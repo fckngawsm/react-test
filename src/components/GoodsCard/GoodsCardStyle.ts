@@ -13,7 +13,7 @@ export const WrapperCard = styled.div`
 
 export const CardImage = styled.img`
   width: 150px;
-  height: 180px;
+  height: 150px;
   cursor: pointer;
 `;
 
