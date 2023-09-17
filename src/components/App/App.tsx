@@ -5,6 +5,7 @@ import Login from "../Auth/Login";
 import Header from "../Header/Header";
 import "../../global.css";
 import Goods from "../GoodsList/GoodsList";
+import Popup from "../Popup/Popup";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/sign-in" element={<Login />} />
           <Route path="/goods" element={<Goods />} />
         </Routes>
+        <Popup isOpen={true} onClose={() => {}} />
       </main>
     </div>
   );

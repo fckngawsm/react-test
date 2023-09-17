@@ -32,6 +32,7 @@ function GoodsCard({
     <WrapperCard>
       <CardImage src={imageUrl} alt="book" />
       <button onClick={() => handleDeleteById(id)}>удалить</button>
+      <button>изменить</button>
       <CardInfromation>
         <CardCategories>{categories}</CardCategories>
         <CardTitle>{title}</CardTitle>
