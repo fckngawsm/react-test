@@ -84,6 +84,9 @@ const GoodsSlice = createSlice({
         );
 
         state.list = newProduct;
+      })
+      .addCase(updateProductById.fulfilled, (state, action) => {
+        state.list[action.payload.id] = action.payload;
       });
   },
 });

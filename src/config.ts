@@ -7,3 +7,5 @@ export const DELETE_PRODUCT_BY_ID = (id: number) =>
   `http://localhost:4444/goods/${id}`;
 export const UPDATE_PRODUCT_BY_ID = (id: number) =>
   `http://localhost:4444/goods/${id}`;
+
+  console.log(UPDATE_PRODUCT_BY_ID(3))
