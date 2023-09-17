@@ -18,27 +18,27 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux-hooks";
 import { GoodsType } from "../../types/goodsType";
+import { updateProductById } from "../../features/goods/goods-slice";
 
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
+  onSubmit: (data: GoodsType) => void;
 }
-function Popup({ isOpen, onClose }: PopupProps) {
-  const dispatch = useAppDispatch();
-  const navgiate = useNavigate();
+function Popup({ isOpen, onClose, onSubmit }: PopupProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<GoodsType>();
-  const onSubmit: SubmitHandler<GoodsType> = (data) => {
-    console.log(data);
-    // dispatch(registerUser(data))
-    //   .unwrap()
-    //   .then(() => {
-    //     navgiate("/sign-in");
-    //   });
-  };
+  // const onSubmit: SubmitHandler<GoodsType> = (data) => {
+  //   console.log(data)
+  //   dispatch(updateProductById(data))
+  //     .unwrap()
+  //     .then(() => {
+  //       onClose();
+  //     });
+  // };
   return (
     <PopupWrapper isOpen={isOpen}>
       <PopupContainer>
@@ -53,7 +53,7 @@ function Popup({ isOpen, onClose }: PopupProps) {
             {...register("imageUrl", {
               required: { value: false, message: "Вы забыли указать почту" },
               minLength: { value: 2, message: "Слишком короткая почта" },
-              maxLength: { value: 40, message: "Слишком длинная почта" },
+              maxLength: { value: 1240, message: "Слишком длинная почта" },
             })}
             type="text"
           />

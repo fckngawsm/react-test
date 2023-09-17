@@ -23,7 +23,6 @@ function Register() {
     formState: { errors },
   } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    console.log(data);
     dispatch(registerUser(data))
       .unwrap()
       .then(() => {
@@ -86,7 +85,7 @@ function Register() {
         {errors.password && (
           <AuthMessageError>{errors.password.message}</AuthMessageError>
         )}
-        <AuthButton>Войти</AuthButton>
+        <AuthButton>Зарегистрироваться</AuthButton>
         <AuthText>
           У вас есть аккаунт?
           <AuthSpan to="/sign-in">Войти</AuthSpan>

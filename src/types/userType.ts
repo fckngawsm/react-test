@@ -5,4 +5,5 @@ export type UserType = {
   email: string;
   isAdmin: boolean;
   password?: string | null;
+  token: string;
 };

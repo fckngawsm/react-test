@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import { HeaderLink, HeaderNavigation, HeaderWrapper } from "./HeaderStyle";
+import { useAppDispatch } from "../../redux-hooks";
+import { checkAuth } from "../../features/users/users-slice";
 function Header() {
   return (
     <HeaderWrapper>

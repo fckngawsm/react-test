@@ -8,18 +8,36 @@ import {
   loadingAllGoods,
 } from "../../features/goods/goods-slice";
 
-function GoodsList() {
+interface GoodsListProps {
+  popupOpen: boolean;
+  handleOpenPopup: () => void;
+  handleClosePopup: () => void;
+}
+
+function GoodsList({
+  handleOpenPopup,
+  popupOpen,
+  handleClosePopup,
+}: GoodsListProps) {
   const dispatch = useAppDispatch();
   const list = useAppSelector(goodsListSelectors);
   useEffect(() => {
     if (list.length === 0) dispatch(loadingAllGoods());
   }, [dispatch]);
   return (
-    <GoodsListWrapper>
-      {list.map((item) => (
-        <GoodsCard key={item.id} {...item} />
-      ))}
-    </GoodsListWrapper>
+    <>
+      <GoodsListWrapper>
+        {list.map((item) => (
+          <GoodsCard
+            handleOpenPopup={handleOpenPopup}
+            handleClosePopup={handleClosePopup}
+            popupOpen={popupOpen}
+            key={item.id}
+            {...item}
+          />
+        ))}
+      </GoodsListWrapper>
+    </>
   );
 }
 

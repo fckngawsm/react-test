@@ -35,12 +35,40 @@ export const loginUser = createAsyncThunk<
   UserType,
   UserType,
   { extra: Extra; rejectWithValue: string }
->("@@auth/login", async (data, { extra: { client, api }, rejectWithValue }) => {
+>(
+  "@@auth/login",
+  async (dataUser, { extra: { client, api }, rejectWithValue }) => {
+    try {
+      const { data } = await client.post(api.LOGIN_USER, dataUser, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const { token } = data;
+      localStorage.setItem("jwt", token);
+      return data;
+    } catch (err) {
+      return rejectWithValue("Ошибка");
+    }
+  }
+);
+
+export const checkAuth = createAsyncThunk<
+  UserType,
+  string,
+  { extra: Extra; rejectWithValue: string }
+>("@@user/isAuth", async (jwt, { extra: { client, api }, rejectWithValue }) => {
   try {
-    const res = await client.post(api.LOGIN_USER, data);
+    const res = await client.get(api.CHECK_JWT, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     return res.data;
-  } catch (error) {
-    return rejectWithValue("У вас случилась ошибка");
+  } catch (err) {
+    return rejectWithValue("Ошибка");
   }
 });
 
@@ -64,6 +92,11 @@ const UserSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.status = "received";
+      })
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.user = action.payload;
+        console.log(state.user)
+
       });
   },
 });

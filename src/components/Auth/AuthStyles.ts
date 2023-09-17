@@ -40,6 +40,7 @@ export const AuthText = styled.p`
   font-size: 16px;
   font-weight: 700;
   text-align: center;
+  color: black;
 `;
 
 export const AuthSpan = styled(Link)`

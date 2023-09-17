@@ -21,6 +21,7 @@ export const loadingAllGoods = createAsyncThunk<
   undefined,
   { extra: Extra; rejectWithValue: string }
 >("@@goods/loading", async (_, { extra: { client, api }, rejectWithValue }) => {
+  const jwt = localStorage.getItem("jwt");
   try {
     const res = await client.get(api.LOADING_GOODS);
     return res.data;
@@ -41,6 +42,23 @@ export const deleteProductById = createAsyncThunk<
     return rejectWithValue("У вас случилась ошибка");
   }
 });
+
+export const updateProductById = createAsyncThunk<
+  GoodsType,
+  GoodsType,
+  { extra: Extra; rejectWithValue: string }
+>(
+  "@@goods/update",
+  async (data, { extra: { client, api }, rejectWithValue }) => {
+    console.log(data);
+    try {
+      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(data.id), data);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue("Ошибка");
+    }
+  }
+);
 
 const GoodsSlice = createSlice({
   name: "@@user",
