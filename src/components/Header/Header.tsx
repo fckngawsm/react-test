@@ -5,10 +5,15 @@ import {
   HeaderNavigation,
   HeaderWrapper,
 } from "./HeaderStyle";
-import { useAppSelector } from "../../redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { userInfoisAuthSelectors } from "../../features/users/users-selectors";
+import { logOut } from "../../features/users/users-slice";
 function Header() {
+  const dispatch = useAppDispatch();
   const isAuth = useAppSelector(userInfoisAuthSelectors);
+  function handleLogout() {
+    dispatch(logOut());
+  }
   return (
     <HeaderWrapper>
       {isAuth ? (
@@ -16,7 +21,9 @@ function Header() {
           <HeaderLink to="/goods">Товары</HeaderLink>
           <HeaderLinksInfo>
             <HeaderLink to="/profile">Мой профиль</HeaderLink>
-            <HeaderLink to="/sign-up">Выйти</HeaderLink>
+            <HeaderLink to="/sign-up" onClick={handleLogout}>
+              Выйти
+            </HeaderLink>
           </HeaderLinksInfo>
         </HeaderNavigation>
       ) : (

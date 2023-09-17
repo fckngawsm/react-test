@@ -45,14 +45,13 @@ export const deleteProductById = createAsyncThunk<
 
 export const updateProductById = createAsyncThunk<
   GoodsType,
-  GoodsType,
+  { id: number; data: GoodsType },
   { extra: Extra; rejectWithValue: string }
 >(
   "@@goods/update",
-  async (data, { extra: { client, api }, rejectWithValue }) => {
-    console.log(data);
+  async ({ id, data }, { extra: { client, api }, rejectWithValue }) => {
     try {
-      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(data.id), data);
+      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(id), data);
       return res.data;
     } catch (err) {
       return rejectWithValue("Ошибка");

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import cart from "../../images/cart.svg";
 import {
   CardCategories,
@@ -40,17 +40,11 @@ function GoodsCard({
   function handleDeleteById(id: number) {
     dispatch(deleteProductById(id));
   }
-  const onSubmit: SubmitHandler<GoodsType> = ({
-    id,
-    categories,
-    imageUrl,
-    price,
-    title,
-    quantity,
-  }) => {
-    dispatch(
-      updateProductById({ id, categories, imageUrl, price, title, quantity })
-    )
+  // function handleUpdateProduct(data){
+  //   dispatch(updateProductById(id,data))
+  // }
+  const onSubmit: SubmitHandler<GoodsType> = (data) => {
+    dispatch(updateProductById({ id, data }))
       .unwrap()
       .then(() => {
         handleClosePopup();

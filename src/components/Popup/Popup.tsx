@@ -31,14 +31,7 @@ function Popup({ isOpen, onClose, onSubmit }: PopupProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<GoodsType>();
-  // const onSubmit: SubmitHandler<GoodsType> = (data) => {
-  //   console.log(data)
-  //   dispatch(updateProductById(data))
-  //     .unwrap()
-  //     .then(() => {
-  //       onClose();
-  //     });
-  // };
+
   return (
     <PopupWrapper isOpen={isOpen}>
       <PopupContainer>

@@ -12,6 +12,7 @@ import { checkAuth } from "../../features/users/users-slice";
 
 function App() {
   const [popupOpen, setPopupOpen] = useState(false);
+  const [editTodo, setEditTodo] = useState<GoodsType | null>(null);
   function handleOpenPopup() {
     setPopupOpen(true);
   }
