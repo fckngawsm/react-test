@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
@@ -13,7 +13,13 @@ export const HeaderNavigation = styled.nav`
   justify-content: space-between;
 `;
 
-export const HeaderLink = styled(Link)`
+export const HeaderLinksInfo = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const HeaderLink = styled(NavLink)`
   text-decoration: none;
   color: black;
   font-size: 16px;

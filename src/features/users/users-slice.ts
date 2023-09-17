@@ -7,12 +7,14 @@ type AuthInitialState = {
   user: UserType | null;
   status: StatusType;
   error: string | null;
+  isAuth: boolean;
 };
 
 const initialState: AuthInitialState = {
   user: null,
   status: "idle",
   error: null,
+  isAuth: false,
 };
 
 export const registerUser = createAsyncThunk<
@@ -94,9 +96,7 @@ const UserSlice = createSlice({
         state.status = "received";
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
-        state.user = action.payload;
-        console.log(state.user)
-
+        state.isAuth = true;
       });
   },
 });
