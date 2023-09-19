@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { GoodsListWrapper } from "./GoodsListStyles";
-import GoodsCard from "../GoodsCard/GoodsCard";
+import ProductCard, {} from "../ProductCard/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { goodsListSelectors } from "../../features/goods/goods-selectors";
 import {
@@ -28,7 +28,7 @@ function GoodsList({
     <>
       <GoodsListWrapper>
         {list.map((item) => (
-          <GoodsCard
+          <ProductCard
             handleOpenPopup={handleOpenPopup}
             handleClosePopup={handleClosePopup}
             popupOpen={popupOpen}

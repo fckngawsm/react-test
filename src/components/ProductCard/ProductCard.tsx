@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import cart from "../../images/cart.svg";
 import {
+  ButtonAdmin,
+  ButtonBuy,
+  ButtonsWrapper,
   CardCategories,
-  CardCart,
+  CardDetailsInformation,
   CardImage,
-  CardInfromation,
-  CardTitle,
+  CardInformation,
   CardPrice,
-  CardPurchase,
+  CardTitile,
   WrapperCard,
-} from "./GoodsCardStyle";
+} from "./ProductCardStyle";
 import { GoodsType } from "../../types/goodsType";
 import { useAppDispatch } from "../../redux-hooks";
 import {
@@ -19,13 +21,13 @@ import {
 import Popup from "../Popup/Popup";
 import { SubmitHandler } from "react-hook-form";
 
-interface GoodsCardProps extends GoodsType {
+interface ProductCardProps extends GoodsType {
   popupOpen: boolean;
   handleOpenPopup: () => void;
   handleClosePopup: () => void;
 }
 
-function GoodsCard({
+function ProductCard({
   handleOpenPopup,
   handleClosePopup,
   popupOpen,
@@ -35,7 +37,7 @@ function GoodsCard({
   quantity,
   title,
   id,
-}: GoodsCardProps) {
+}: ProductCardProps) {
   const dispatch = useAppDispatch();
   function handleDeleteById(id: number) {
     dispatch(deleteProductById(id));
@@ -53,17 +55,28 @@ function GoodsCard({
   return (
     <>
       <WrapperCard>
+        <ButtonsWrapper>
+          <ButtonAdmin onClick={() => handleDeleteById(id)}>
+            удалить
+          </ButtonAdmin>
+          <ButtonAdmin onClick={handleOpenPopup}>изменить</ButtonAdmin>
+        </ButtonsWrapper>
+
         <CardImage src={imageUrl} alt="book" />
-        <button onClick={() => handleDeleteById(id)}>удалить</button>
-        <button onClick={handleOpenPopup}>изменить</button>
-        <CardInfromation>
+        {/* <CardInfromation>
           <CardCategories>{categories}</CardCategories>
           <CardTitle>{title}</CardTitle>
           <CardPurchase>
             <CardPrice>{price} руб.</CardPrice>
             <CardCart src={cart} alt="cart" />
           </CardPurchase>
-        </CardInfromation>
+        </CardInfromation> */}
+        <CardInformation>
+          <CardCategories>{categories}</CardCategories>
+          <CardTitile>{title}</CardTitile>
+          <CardPrice>{price} руб.</CardPrice>
+          <ButtonBuy>Купить</ButtonBuy>
+        </CardInformation>
       </WrapperCard>
       <Popup
         onSubmit={onSubmit}
@@ -74,4 +87,4 @@ function GoodsCard({
   );
 }
 
-export default GoodsCard;
+export default ProductCard;
