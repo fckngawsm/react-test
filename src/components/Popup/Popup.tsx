@@ -17,15 +17,15 @@ import {
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux-hooks";
-import { GoodsType } from "../../types/goodsType";
-import { updateProductById } from "../../features/goods/goods-slice";
+import { GoodsType, categoriesEnum } from "../../types/goodsType";
 
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: GoodsType) => void;
+  id: number;
 }
-function Popup({ isOpen, onClose, onSubmit }: PopupProps) {
+function Popup({ isOpen, onClose, onSubmit, id }: PopupProps) {
   const {
     register,
     handleSubmit,
@@ -33,13 +33,24 @@ function Popup({ isOpen, onClose, onSubmit }: PopupProps) {
   } = useForm<GoodsType>();
 
   return (
-    <PopupWrapper isOpen={isOpen}>
+    <PopupWrapper isopen={isOpen}>
       <PopupContainer>
         <Button onClick={onClose}>
           <ButtonImage src={buttonClose} />
         </Button>
         <AuthTitle>Внести изменения</AuthTitle>
-        <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <AuthForm
+          onSubmit={handleSubmit((data) =>
+            onSubmit({
+              id,
+              categories: data.categories,
+              imageUrl: data.imageUrl,
+              price: data.price,
+              quantity: data.quantity,
+              title: data.title,
+            })
+          )}
+        >
           <AuthInput
             autoComplete="none"
             placeholder="Ссылка на картинку"

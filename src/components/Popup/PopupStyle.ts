@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PopupWrapper = styled.div<{ isOpen: boolean }>`
+export const PopupWrapper = styled.div<{ isopen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@ export const PopupWrapper = styled.div<{ isOpen: boolean }>`
   border-radius: 10px;
   opacity: 1;
   transition: visibility 0.3s, opacity 0.4s ease-in;
-  visibility: ${(props) => (props.isOpen ? "visibly" : "hidden")};
+  visibility: ${(props) => (props.isopen ? "visibly" : "hidden")};
 `;
 export const PopupContainer = styled.div`
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);

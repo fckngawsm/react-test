@@ -1,24 +1,33 @@
-import React, { useEffect } from "react";
-import { GoodsListWrapper } from "./GoodsListStyles";
-import ProductCard, {} from "../ProductCard/ProductCard";
+import React, { useEffect, useState } from "react";
+import { ButtonNewItem, GoodsListWrapper } from "./GoodsListStyles";
+import ProductCard from "../ProductCard/ProductCard";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { goodsListSelectors } from "../../features/goods/goods-selectors";
 import {
-  deleteProductById,
   loadingAllGoods,
+  updateProductById,
 } from "../../features/goods/goods-slice";
+import { GoodsType } from "../../types/goodsType";
+import Popup from "../Popup/Popup";
+import { SubmitHandler } from "react-hook-form";
 
-interface GoodsListProps {
-  popupOpen: boolean;
-  handleOpenPopup: () => void;
-  handleClosePopup: () => void;
-}
-
-function GoodsList({
-  handleOpenPopup,
-  popupOpen,
-  handleClosePopup,
-}: GoodsListProps) {
+function GoodsList() {
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [id, setId] = useState<null | number>(null);
+  function handleOpenPopup(data: GoodsType) {
+    setPopupOpen(true);
+    setId(data.id);
+  }
+  function handleClosePopup() {
+    setPopupOpen(false);
+  }
+  const onSubmit: SubmitHandler<GoodsType> = (data) => {
+    dispatch(updateProductById(data))
+      .unwrap()
+      .then(() => {
+        handleClosePopup();
+      });
+  };
   const dispatch = useAppDispatch();
   const list = useAppSelector(goodsListSelectors);
   useEffect(() => {
@@ -26,6 +35,7 @@ function GoodsList({
   }, [dispatch]);
   return (
     <>
+      <ButtonNewItem>Добавить новый товар</ButtonNewItem>
       <GoodsListWrapper>
         {list.map((item) => (
           <ProductCard
@@ -37,6 +47,12 @@ function GoodsList({
           />
         ))}
       </GoodsListWrapper>
+      <Popup
+        id={id!}
+        onSubmit={onSubmit}
+        isOpen={popupOpen}
+        onClose={handleClosePopup}
+      />
     </>
   );
 }

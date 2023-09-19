@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const GoodsListWrapper = styled.section`
   display: grid;
-  padding:50px;
+  padding: 50px;
   margin: 0 auto;
   max-width: 100%;
   width: 1280px;
@@ -20,4 +20,12 @@ export const GoodsListWrapper = styled.section`
     grid-template-columns: 1fr;
     gap: 12px;
   }
+`;
+
+export const ButtonNewItem = styled.button`
+  outline: none;
+  border: 1px solid black;
+  padding: 6px 12px;
+  display: block;
+  margin: 30px auto 0;
 `;

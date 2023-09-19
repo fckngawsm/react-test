@@ -3,6 +3,7 @@ import { UserType } from "../../types/userType";
 import { StatusType } from "../../types/statusType";
 import { Extra } from "../../types/extraType";
 import { GoodsType } from "../../types/goodsType";
+import { current } from "@reduxjs/toolkit";
 
 type AuthInitialState = {
   list: GoodsType[];
@@ -45,13 +46,13 @@ export const deleteProductById = createAsyncThunk<
 
 export const updateProductById = createAsyncThunk<
   GoodsType,
-  { id: number; data: GoodsType },
+  GoodsType,
   { extra: Extra; rejectWithValue: string }
 >(
   "@@goods/update",
-  async ({ id, data }, { extra: { client, api }, rejectWithValue }) => {
+  async (data, { extra: { client, api }, rejectWithValue }) => {
     try {
-      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(id), data);
+      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(data.id), data);
       return res.data;
     } catch (err) {
       return rejectWithValue("Ошибка");
@@ -76,6 +77,7 @@ const GoodsSlice = createSlice({
       .addCase(loadingAllGoods.fulfilled, (state, action) => {
         state.status = "received";
         state.list = action.payload;
+        console.log(state.list);
       })
       .addCase(deleteProductById.fulfilled, (state, action) => {
         state.status = "received";
@@ -86,7 +88,10 @@ const GoodsSlice = createSlice({
         state.list = newProduct;
       })
       .addCase(updateProductById.fulfilled, (state, action) => {
-        state.list[action.payload.id] = action.payload;
+        state.error = null;
+        state.status = "received";
+        const list = state.list;
+        console.log(current(list));
       });
   },
 });

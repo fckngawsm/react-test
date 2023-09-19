@@ -5,7 +5,6 @@ import {
   ButtonBuy,
   ButtonsWrapper,
   CardCategories,
-  CardDetailsInformation,
   CardImage,
   CardInformation,
   CardPrice,
@@ -23,7 +22,7 @@ import { SubmitHandler } from "react-hook-form";
 
 interface ProductCardProps extends GoodsType {
   popupOpen: boolean;
-  handleOpenPopup: () => void;
+  handleOpenPopup: (data: GoodsType) => void;
   handleClosePopup: () => void;
 }
 
@@ -34,24 +33,15 @@ function ProductCard({
   categories,
   imageUrl,
   price,
-  quantity,
   title,
+  quantity,
   id,
 }: ProductCardProps) {
   const dispatch = useAppDispatch();
   function handleDeleteById(id: number) {
     dispatch(deleteProductById(id));
   }
-  // function handleUpdateProduct(data){
-  //   dispatch(updateProductById(id,data))
-  // }
-  const onSubmit: SubmitHandler<GoodsType> = (data) => {
-    dispatch(updateProductById({ id, data }))
-      .unwrap()
-      .then(() => {
-        handleClosePopup();
-      });
-  };
+  const data = { id, categories, imageUrl, price, title, quantity };
   return (
     <>
       <WrapperCard>
@@ -59,18 +49,12 @@ function ProductCard({
           <ButtonAdmin onClick={() => handleDeleteById(id)}>
             удалить
           </ButtonAdmin>
-          <ButtonAdmin onClick={handleOpenPopup}>изменить</ButtonAdmin>
+          <ButtonAdmin onClick={() => handleOpenPopup(data)}>
+            изменить
+          </ButtonAdmin>
         </ButtonsWrapper>
 
         <CardImage src={imageUrl} alt="book" />
-        {/* <CardInfromation>
-          <CardCategories>{categories}</CardCategories>
-          <CardTitle>{title}</CardTitle>
-          <CardPurchase>
-            <CardPrice>{price} руб.</CardPrice>
-            <CardCart src={cart} alt="cart" />
-          </CardPurchase>
-        </CardInfromation> */}
         <CardInformation>
           <CardCategories>{categories}</CardCategories>
           <CardTitile>{title}</CardTitile>
@@ -78,11 +62,6 @@ function ProductCard({
           <ButtonBuy>Купить</ButtonBuy>
         </CardInformation>
       </WrapperCard>
-      <Popup
-        onSubmit={onSubmit}
-        isOpen={popupOpen}
-        onClose={handleClosePopup}
-      />
     </>
   );
 }

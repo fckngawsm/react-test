@@ -9,20 +9,12 @@ import Popup from "../Popup/Popup";
 import { GoodsType } from "../../types/goodsType";
 import { useAppDispatch } from "../../redux-hooks";
 import { checkAuth } from "../../features/users/users-slice";
+import GoodsList from "../GoodsList/GoodsList";
 
 function App() {
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [editTodo, setEditTodo] = useState<GoodsType | null>(null);
-  function handleOpenPopup() {
-    setPopupOpen(true);
-  }
-  function handleClosePopup() {
-    setPopupOpen(false);
-  }
   const dispatch = useAppDispatch();
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
-    console.log(jwt);
     if (jwt) {
       dispatch(checkAuth(jwt));
     }
@@ -34,16 +26,7 @@ function App() {
         <Routes>
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
-          <Route
-            path="/goods"
-            element={
-              <Goods
-                popupOpen={popupOpen}
-                handleClosePopup={handleClosePopup}
-                handleOpenPopup={handleOpenPopup}
-              />
-            }
-          />
+          <Route path="/goods" element={<GoodsList />} />
         </Routes>
       </main>
     </div>

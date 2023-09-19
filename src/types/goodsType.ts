@@ -1,4 +1,4 @@
-enum categoriesEnum {
+export enum categoriesEnum {
   books = "книги",
   homeGoods = "товары для дома",
   carItems = "запчасти для машины",
@@ -11,5 +11,5 @@ export type GoodsType = {
   imageUrl: string;
   quantity: number;
   categories: categoriesEnum;
-  price: 32000;
+  price: number;
 };
