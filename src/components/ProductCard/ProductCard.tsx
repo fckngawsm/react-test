@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import cart from "../../images/cart.svg";
 import {
   ButtonAdmin,
   ButtonBuy,
@@ -13,12 +12,7 @@ import {
 } from "./ProductCardStyle";
 import { GoodsType } from "../../types/goodsType";
 import { useAppDispatch } from "../../redux-hooks";
-import {
-  deleteProductById,
-  updateProductById,
-} from "../../features/goods/goods-slice";
-import Popup from "../Popup/Popup";
-import { SubmitHandler } from "react-hook-form";
+import { deleteProductById } from "../../features/goods/goods-slice";
 
 interface ProductCardProps extends GoodsType {
   popupOpen: boolean;

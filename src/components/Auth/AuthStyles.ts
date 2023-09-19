@@ -51,7 +51,7 @@ export const AuthSpan = styled(Link)`
 `;
 
 export const AuthMessageError = styled.p`
-  margin-top:-5px;
-  color:red;
+  margin-top: -5px;
+  color: red;
   font-size: 14px;
-`
+`;

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import buttonClose from "../../images/close.svg";
 import {
   Button,
@@ -14,10 +13,8 @@ import {
   AuthMessageError,
   AuthTitle,
 } from "../Auth/AuthStyles";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../redux-hooks";
-import { GoodsType, categoriesEnum } from "../../types/goodsType";
+import { useForm } from "react-hook-form";
+import { GoodsType } from "../../types/goodsType";
 
 interface PopupProps {
   isOpen: boolean;

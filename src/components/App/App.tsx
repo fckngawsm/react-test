@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Register from "../Auth/Register";
 import Login from "../Auth/Login";
 import Header from "../Header/Header";
 import "../../global.css";
-import Goods from "../GoodsList/GoodsList";
-import Popup from "../Popup/Popup";
-import { GoodsType } from "../../types/goodsType";
 import { useAppDispatch } from "../../redux-hooks";
 import { checkAuth } from "../../features/users/users-slice";
 import GoodsList from "../GoodsList/GoodsList";

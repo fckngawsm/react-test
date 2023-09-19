@@ -12,7 +12,7 @@ import {
 } from "./AuthStyles";
 import { useAppDispatch } from "../../redux-hooks";
 import { UserType } from "../../types/userType";
-import { loginUser, registerUser } from "../../features/users/users-slice";
+import { loginUser } from "../../features/users/users-slice";
 
 function Login() {
   const dispatch = useAppDispatch();

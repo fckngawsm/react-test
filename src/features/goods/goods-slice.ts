@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { UserType } from "../../types/userType";
 import { StatusType } from "../../types/statusType";
 import { Extra } from "../../types/extraType";
 import { GoodsType } from "../../types/goodsType";
