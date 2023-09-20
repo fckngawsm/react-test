@@ -13,6 +13,7 @@ import ProfileAdminAddProduct from "../Profile/ProfileAdminAddProduct";
 import { checkAuth } from "../../features/users/users-slice";
 import { jwt } from "../../constants/constants";
 import ProfilePage from "../../pages/ProfilePage";
+import ProfileInformationMe from "../Profile/ProfileInformationMe";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ function App() {
             <Route path="order" element={<ProfileAdminOrder />} />
             <Route path="users" element={<ProfileAdminUsers />} />
             <Route path="add-product" element={<ProfileAdminAddProduct />} />
+            <Route path="information-me" element={<ProfileInformationMe />} />
           </Route>
           <Route path="/cart" element={<CartList />} />
         </Routes>

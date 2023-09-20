@@ -18,7 +18,7 @@ function ProfileUser() {
         <WrapperNavigation>
           <ProfileTitle>Привет, {currentUser?.name}</ProfileTitle>
           <ProfileNavigation>
-            <ProfileLink to="my-order">Мои заказы</ProfileLink>
+            <ProfileLink to="information-me">Информация обо мне</ProfileLink>
           </ProfileNavigation>
         </WrapperNavigation>
         <Outlet />
