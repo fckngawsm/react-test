@@ -3,6 +3,7 @@ import { StatusType } from "../../types/statusType";
 import { Extra } from "../../types/extraType";
 import { GoodsType } from "../../types/goodsType";
 import { current } from "@reduxjs/toolkit";
+import { jwt } from "../../constants/constants";
 
 type AuthInitialState = {
   list: GoodsType[];
@@ -35,7 +36,12 @@ export const deleteProductById = createAsyncThunk<
   { extra: Extra; rejectWithValue: string }
 >("@@goods/delete", async (id, { extra: { client, api }, rejectWithValue }) => {
   try {
-    const res = await client.delete(api.DELETE_PRODUCT_BY_ID(id));
+    const res = await client.delete(api.DELETE_PRODUCT_BY_ID(id), {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
     return res.data;
   } catch (error) {
     return rejectWithValue("У вас случилась ошибка");
@@ -49,9 +55,13 @@ export const updateProductById = createAsyncThunk<
 >(
   "@@goods/update",
   async (data, { extra: { client, api }, rejectWithValue }) => {
-    console.log(data);
     try {
-      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(data.id), data);
+      const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(data.id), data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       return res.data;
     } catch (err) {
       return rejectWithValue("Ошибка");
@@ -66,9 +76,13 @@ export const createProduct = createAsyncThunk<
 >(
   "@@goods/create",
   async (data, { extra: { client, api }, rejectWithValue }) => {
-    console.log(data);
     try {
-      const res = await client.post(api.CREATE_PRODUCT, data);
+      const res = await client.post(api.CREATE_PRODUCT, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       return res.data;
     } catch (err) {
       return rejectWithValue("Ошибка");

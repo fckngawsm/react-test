@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { UserType } from "../../types/userType";
 import { StatusType } from "../../types/statusType";
 import { Extra } from "../../types/extraType";
+import { jwt } from "../../constants/constants";
 
 type AuthInitialState = {
   user: UserType | null;
@@ -24,10 +25,15 @@ export const loadingAllUsers = createAsyncThunk<
   undefined,
   { extra: Extra; rejectValue: string }
 >(
-  "@@customers/load-customers",
+  "@@users/load-users",
   async (_, { extra: { client, api }, rejectWithValue }) => {
     try {
-      return client.get(api.ALL_USERS);
+      return client.get(api.ALL_USERS, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
     } catch (error) {
       if (error instanceof Error) {
         return rejectWithValue(error.message);
@@ -101,7 +107,7 @@ const UserSlice = createSlice({
     logOut: (state) => {
       state.isAuth = false;
       state.user = null;
-      localStorage.removeItem("jwt")
+      localStorage.removeItem("jwt");
     },
   },
   extraReducers: (builder) => {

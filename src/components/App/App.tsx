@@ -16,12 +16,12 @@ import Cart from "../Cart/Cart";
 import CartList from "../CartList/CartList";
 import ProfilePage from "../../pages/ProfilePage";
 import ProfileAdminAddProduct from "../Profile/ProfileAdminAddProduct";
+import { jwt } from "../../constants/constants";
 // import ProfileMyOrder from "../Profile/ProfileMyOrder";
 
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       dispatch(checkAuth(jwt));
     }

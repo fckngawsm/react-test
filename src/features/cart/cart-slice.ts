@@ -6,6 +6,7 @@ import { current } from "@reduxjs/toolkit";
 import { ProductType } from "../../types/productType";
 import { CartType } from "../../types/cartType";
 import { json } from "stream/consumers";
+import { jwt } from "../../constants/constants";
 
 type cartInitialState = {
   list: CartType[];
@@ -26,7 +27,6 @@ export const loadingUserCart = createAsyncThunk<
 >(
   "@@cart/loading-cart",
   async (_, { extra: { client, api }, rejectWithValue }) => {
-    const jwt = localStorage.getItem("jwt");
     try {
       const res = await client.get(api.LOADING_USER_CART, {
         headers: {
@@ -48,7 +48,6 @@ export const addItemTocart = createAsyncThunk<
 >(
   "@@cart/add-item",
   async (ProductId, { extra: { client, api }, rejectWithValue }) => {
-    const jwt = localStorage.getItem("jwt");
     try {
       const res = await client.post(
         api.ADD_ITEM_TO_CART,

@@ -38,13 +38,12 @@ function GoodsList() {
   };
 
   function handleAddItemToCart(id: number) {
-    console.log(id)
+    console.log(id);
     dispatch(addItemTocart(id));
   }
 
   return (
     <>
-      <ButtonNewItem>Добавить новый товар</ButtonNewItem>
       <GoodsListWrapper>
         {list.map((item) => (
           <ProductCard

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { StatusType } from "../../types/statusType";
 import { Extra } from "../../types/extraType";
 import { OrderType } from "../../types/orderType";
+import { jwt } from "../../constants/constants";
 
 type OrderInitialState = {
   list: OrderType[];
@@ -22,7 +23,6 @@ export const loadingAllOrder = createAsyncThunk<
 >(
   "@@order/loading-order",
   async (_, { extra: { client, api }, rejectWithValue }) => {
-    const jwt = localStorage.getItem("jwt");
     try {
       const res = await client.get(api.LOADING_ALL_ORDER, {
         headers: {
@@ -44,7 +44,6 @@ export const createOrder = createAsyncThunk<
 >(
   "@@order/create-order",
   async (data, { extra: { client, api }, rejectWithValue }) => {
-    const jwt = localStorage.getItem("jwt");
     try {
       const res = await client.post(api.LOADING_ALL_ORDER, data, {
         headers: {
