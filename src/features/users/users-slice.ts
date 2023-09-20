@@ -101,6 +101,7 @@ const UserSlice = createSlice({
     logOut: (state) => {
       state.isAuth = false;
       state.user = null;
+      localStorage.removeItem("jwt")
     },
   },
   extraReducers: (builder) => {

@@ -14,6 +14,8 @@ import ProfileAdminUsers from "../Profile/ProfileAdminUsers";
 import ProfileAdminOrder from "../Profile/ProfileAdminOrder";
 import Cart from "../Cart/Cart";
 import CartList from "../CartList/CartList";
+import ProfilePage from "../../pages/ProfilePage";
+// import ProfileMyOrder from "../Profile/ProfileMyOrder";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -31,9 +33,10 @@ function App() {
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
           <Route path="/goods" element={<GoodsList />} />
-          <Route path="/profile" element={<ProfileAdmin />}>
+          <Route path="/profile" element={<ProfilePage />}>
             <Route path="order" element={<ProfileAdminOrder />} />
             <Route path="users" element={<ProfileAdminUsers />} />
+            {/* <Route path="my-order" element={<ProfileMyOrder />} /> */}
           </Route>
           <Route path="/cart" element={<CartList />} />
         </Routes>

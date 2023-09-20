@@ -30,7 +30,7 @@ function Popup({ isOpen, onClose, onSubmit, id }: PopupProps) {
   } = useForm<GoodsType>();
 
   return (
-    <PopupWrapper isopen={isOpen}>
+    <PopupWrapper isopen={isOpen ? true : false}>
       <PopupContainer>
         <Button onClick={onClose}>
           <ButtonImage src={buttonClose} />

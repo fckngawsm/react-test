@@ -10,10 +10,18 @@ import {
 import { GoodsType } from "../../types/goodsType";
 import Popup from "../Popup/Popup";
 import { SubmitHandler } from "react-hook-form";
+import { addItemTocart } from "../../features/cart/cart-slice";
 
 function GoodsList() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [id, setId] = useState<null | number>(null);
+  const dispatch = useAppDispatch();
+  const list = useAppSelector(goodsListSelectors);
+
+  useEffect(() => {
+    if (list.length === 0) dispatch(loadingAllGoods());
+  }, [dispatch]);
+
   function handleOpenPopup(data: GoodsType) {
     setPopupOpen(true);
     setId(data.id);
@@ -28,11 +36,12 @@ function GoodsList() {
         handleClosePopup();
       });
   };
-  const dispatch = useAppDispatch();
-  const list = useAppSelector(goodsListSelectors);
-  useEffect(() => {
-    if (list.length === 0) dispatch(loadingAllGoods());
-  }, [dispatch]);
+
+  function handleAddItemToCart(id: number) {
+    console.log(id)
+    dispatch(addItemTocart(id));
+  }
+
   return (
     <>
       <ButtonNewItem>Добавить новый товар</ButtonNewItem>
@@ -41,6 +50,7 @@ function GoodsList() {
           <ProductCard
             handleOpenPopup={handleOpenPopup}
             handleClosePopup={handleClosePopup}
+            handleAddItemToCart={handleAddItemToCart}
             popupOpen={popupOpen}
             key={item.id}
             {...item}

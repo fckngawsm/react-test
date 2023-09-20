@@ -21,7 +21,6 @@ export const loadingAllGoods = createAsyncThunk<
   undefined,
   { extra: Extra; rejectWithValue: string }
 >("@@goods/loading", async (_, { extra: { client, api }, rejectWithValue }) => {
-  const jwt = localStorage.getItem("jwt");
   try {
     const res = await client.get(api.LOADING_GOODS);
     return res.data;
@@ -50,6 +49,7 @@ export const updateProductById = createAsyncThunk<
 >(
   "@@goods/update",
   async (data, { extra: { client, api }, rejectWithValue }) => {
+    console.log(data);
     try {
       const res = await client.patch(api.UPDATE_PRODUCT_BY_ID(data.id), data);
       return res.data;
@@ -60,7 +60,7 @@ export const updateProductById = createAsyncThunk<
 );
 
 const GoodsSlice = createSlice({
-  name: "@@user",
+  name: "@@goods",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
