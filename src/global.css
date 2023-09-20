@@ -1,6 +1,6 @@
 @import url(./vendor/normalize.css);
 body {
-  background-color: white;
+  background-color: rgba(238, 238, 238, 1);
 }
 
 .page {
@@ -9,7 +9,7 @@ body {
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-weight: 400;
   max-width: 1920px;
-  color: white;
+  color: black;
 }
 
 .main {

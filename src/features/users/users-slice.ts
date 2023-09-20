@@ -5,6 +5,7 @@ import { Extra } from "../../types/extraType";
 
 type AuthInitialState = {
   user: UserType | null;
+  list: UserType[];
   status: StatusType;
   error: string | null;
   isAuth: boolean;
@@ -12,10 +13,29 @@ type AuthInitialState = {
 
 const initialState: AuthInitialState = {
   user: null,
+  list: [],
   status: "idle",
   error: null,
   isAuth: false,
 };
+
+export const loadingAllUsers = createAsyncThunk<
+  { data: UserType[] },
+  undefined,
+  { extra: Extra; rejectValue: string }
+>(
+  "@@customers/load-customers",
+  async (_, { extra: { client, api }, rejectWithValue }) => {
+    try {
+      return client.get(api.ALL_USERS);
+    } catch (error) {
+      if (error instanceof Error) {
+        return rejectWithValue(error.message);
+      }
+      return rejectWithValue("Unknown error");
+    }
+  }
+);
 
 export const registerUser = createAsyncThunk<
   { token: string },
@@ -102,6 +122,11 @@ const UserSlice = createSlice({
       })
       .addCase(checkAuth.fulfilled, (state, action) => {
         state.isAuth = true;
+        state.user = action.payload;
+      })
+      .addCase(loadingAllUsers.fulfilled, (state, action) => {
+        state.status = "received";
+        state.list = action.payload.data;
       });
   },
 });

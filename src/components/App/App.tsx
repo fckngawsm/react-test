@@ -7,6 +7,11 @@ import "../../global.css";
 import { useAppDispatch } from "../../redux-hooks";
 import { checkAuth } from "../../features/users/users-slice";
 import GoodsList from "../GoodsList/GoodsList";
+import ProfileAdmin from "../Profile/ProfileAdmin";
+import ProfileOrder from "../Profile/ProfileAdminUsers";
+import ProfileUsersList from "../Profile/ProfileAdminOrder";
+import ProfileAdminUsers from "../Profile/ProfileAdminUsers";
+import ProfileAdminOrder from "../Profile/ProfileAdminOrder";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -24,6 +29,10 @@ function App() {
           <Route path="/sign-up" element={<Register />} />
           <Route path="/sign-in" element={<Login />} />
           <Route path="/goods" element={<GoodsList />} />
+          <Route path="/profile" element={<ProfileAdmin />}>
+            <Route path="order" element={<ProfileAdminOrder />} />
+            <Route path="users" element={<ProfileAdminUsers />} />
+          </Route>
         </Routes>
       </main>
     </div>
