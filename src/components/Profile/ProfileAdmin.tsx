@@ -22,6 +22,7 @@ function ProfileAdmin() {
           <ProfileNavigation>
             <ProfileLink to="order">Заказы</ProfileLink>
             <ProfileLink to="users">Пользователи</ProfileLink>
+            <ProfileLink to="add-product">Добавить товар</ProfileLink>
           </ProfileNavigation>
         </WrapperNavigation>
         <Outlet />

@@ -59,6 +59,23 @@ export const updateProductById = createAsyncThunk<
   }
 );
 
+export const createProduct = createAsyncThunk<
+  GoodsType,
+  GoodsType,
+  { extra: Extra; rejectWithValue: string }
+>(
+  "@@goods/create",
+  async (data, { extra: { client, api }, rejectWithValue }) => {
+    console.log(data);
+    try {
+      const res = await client.post(api.CREATE_PRODUCT, data);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue("Ошибка");
+    }
+  }
+);
+
 const GoodsSlice = createSlice({
   name: "@@goods",
   initialState,
@@ -91,6 +108,9 @@ const GoodsSlice = createSlice({
         state.status = "received";
         const list = state.list;
         console.log(current(list));
+      })
+      .addCase(createProduct.fulfilled, (state, action) => {
+        state.list.push(action.payload);
       });
   },
 });

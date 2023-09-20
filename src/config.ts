@@ -9,7 +9,7 @@ export const DELETE_PRODUCT_BY_ID = (id: number) =>
 export const UPDATE_PRODUCT_BY_ID = (id: number) =>
   `http://localhost:4444/goods/${id}`;
 
-console.log(UPDATE_PRODUCT_BY_ID(3));
+export const CREATE_PRODUCT = "http://localhost:4444/goods";
 //cart
 export const LOADING_USER_CART = "http://localhost:4444/cart";
 export const ADD_ITEM_TO_CART = "http://localhost:4444/cart";
