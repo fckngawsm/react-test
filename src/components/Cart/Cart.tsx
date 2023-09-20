@@ -11,7 +11,6 @@ import {
   CartItemPrice,
   CartItemTitle,
 } from "./CartStyle";
-import { ProductType } from "../../types/productType";
 import { CartType } from "../../types/cartType";
 
 interface CartProps extends Pick<CartType, "Product"> {}

@@ -1,11 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { StatusType } from "../../types/statusType";
 import { Extra } from "../../types/extraType";
-import { GoodsType } from "../../types/goodsType";
-import { current } from "@reduxjs/toolkit";
 import { ProductType } from "../../types/productType";
 import { CartType } from "../../types/cartType";
-import { json } from "stream/consumers";
 import { jwt } from "../../constants/constants";
 
 type cartInitialState = {
@@ -66,6 +63,27 @@ export const addItemTocart = createAsyncThunk<
   }
 );
 
+export const clearUserCart = createAsyncThunk<
+  undefined,
+  undefined,
+  { extra: Extra; rejectWithValue: string }
+>(
+  "@@cart/clear-cart",
+  async (_, { extra: { client, api }, rejectWithValue }) => {
+    try {
+      const res = await client.delete(api.CLEAR_CART, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      return res.data;
+    } catch (err) {
+      return rejectWithValue("Ошибка");
+    }
+  }
+);
+
 const CartSlice = createSlice({
   name: "@@cart",
   initialState,
@@ -84,6 +102,10 @@ const CartSlice = createSlice({
         state.status = "received";
         state.error = null;
         state.list = action.payload;
+      })
+      .addCase(clearUserCart.fulfilled, (state) => {
+        state.status = "received";
+        state.error = null;
       });
   },
 });

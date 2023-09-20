@@ -1,23 +1,18 @@
 import React, { useEffect } from "react";
+import "../../global.css";
 import { Route, Routes } from "react-router-dom";
+import { useAppDispatch } from "../../redux-hooks";
 import Register from "../Auth/Register";
 import Login from "../Auth/Login";
 import Header from "../Header/Header";
-import "../../global.css";
-import { useAppDispatch } from "../../redux-hooks";
-import { checkAuth } from "../../features/users/users-slice";
 import GoodsList from "../GoodsList/GoodsList";
-import ProfileAdmin from "../Profile/ProfileAdmin";
-import ProfileOrder from "../Profile/ProfileAdminUsers";
-import ProfileUsersList from "../Profile/ProfileAdminOrder";
 import ProfileAdminUsers from "../Profile/ProfileAdminUsers";
 import ProfileAdminOrder from "../Profile/ProfileAdminOrder";
-import Cart from "../Cart/Cart";
 import CartList from "../CartList/CartList";
-import ProfilePage from "../../pages/ProfilePage";
 import ProfileAdminAddProduct from "../Profile/ProfileAdminAddProduct";
+import { checkAuth } from "../../features/users/users-slice";
 import { jwt } from "../../constants/constants";
-// import ProfileMyOrder from "../Profile/ProfileMyOrder";
+import ProfilePage from "../../pages/ProfilePage";
 
 function App() {
   const dispatch = useAppDispatch();

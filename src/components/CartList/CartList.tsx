@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { cartListSelectors } from "../../features/cart/cart-selectors";
-import Cart from "../Cart/Cart";
 import { loadingUserCart } from "../../features/cart/cart-slice";
-import { CartListButton, WrapperCartList } from "./CartListStyle";
+import { WrapperCartList, CartIsEmpty } from "./CartListStyle";
 import Order from "../Order/Order";
+import Cart from "../Cart/Cart";
 
 function CartList() {
   const dispatch = useAppDispatch();
@@ -17,7 +17,11 @@ function CartList() {
       {cart.map((item) => (
         <Cart key={item.id} {...item} />
       ))}
-      <Order />
+      {cart.length > 0 ? (
+        <Order />
+      ) : (
+        <CartIsEmpty>Ваша корзина пуста </CartIsEmpty>
+      )}
     </WrapperCartList>
   );
 }

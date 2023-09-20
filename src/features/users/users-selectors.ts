@@ -1,4 +1,3 @@
-import { Root } from "react-dom/client";
 import { RootState } from "../../store";
 
 export const userInfoisAuthSelectors = (state: RootState) => state.user.isAuth;

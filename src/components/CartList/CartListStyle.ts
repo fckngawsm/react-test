@@ -14,3 +14,8 @@ export const CartListButton = styled.button`
   padding: 12px;
   border-radius: 6px;
 `;
+
+export const CartIsEmpty = styled.h2`
+  font-size: 20px;
+  text-align: center;
+`;

@@ -1,58 +1,12 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import styled from "styled-components";
 import { OrderType } from "../../types/orderType";
 import { useAppDispatch } from "../../redux-hooks";
 import { createOrder } from "../../features/order/order-slice";
 import { CartListButton } from "../CartList/CartListStyle";
 import { useNavigate } from "react-router-dom";
-const WrapperOrderList = styled.div`
-  width: 900px;
-  margin: 0 auto;
-`;
-const OrderTitle = styled.h2`
-  font-size: 30px;
-  text-align: center;
-  margin: 30px 0 50px;
-`;
-const OrderSubtitle = styled.h3`
-  font-size: 24px;
-  text-align: center;
-`;
-const OrderDetails = styled.div`
-  width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-`;
-const OrderPayment = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-const OrderPaymentTitle = styled.h2`
-  font-size: 20px;
-  font-weight: bold;
-`;
-const OrderPaymentDescription = styled.p`
-  font-size: 16px;
-  color: gray;
-`;
-const OrderForm = styled.form`
-  width: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-`;
-const OrderInput = styled.input`
-  width: 100%;
-  border: none;
-  margin-top: 10px;
-  background-color: transparent;
-  padding: 6px 12px;
-  border-bottom: 1px solid black;
-`;
+import { clearUserCart } from "../../features/cart/cart-slice";
+import { OrderDetails, OrderForm, OrderInput, OrderSubtitle, OrderTitle, WrapperOrderList } from "./OrderStyle";
 function Order() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -66,6 +20,9 @@ function Order() {
   ) => {
     dispatch(createOrder(data))
       .unwrap()
+      .then(() => {
+        dispatch(clearUserCart());
+      })
       .then(() => {
         navigate("/goods");
       });

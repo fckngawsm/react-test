@@ -1,5 +1,6 @@
 import React from "react";
 import buttonClose from "../../images/close.svg";
+import { useForm } from "react-hook-form";
 import {
   Button,
   ButtonImage,
@@ -13,7 +14,6 @@ import {
   AuthMessageError,
   AuthTitle,
 } from "../Auth/AuthStyles";
-import { useForm } from "react-hook-form";
 import { GoodsType } from "../../types/goodsType";
 
 interface PopupProps {

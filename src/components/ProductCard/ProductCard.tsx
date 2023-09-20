@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import {
   ButtonAdmin,
   ButtonBuy,
@@ -11,7 +12,6 @@ import {
   WrapperCard,
 } from "./ProductCardStyle";
 import { GoodsType } from "../../types/goodsType";
-import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { deleteProductById } from "../../features/goods/goods-slice";
 import { currentUserInfo } from "../../features/users/users-selectors";
 

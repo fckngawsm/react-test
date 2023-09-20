@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import {
   HeaderLink,
   HeaderLinksInfo,
@@ -6,7 +7,6 @@ import {
   HeaderWrapper,
 } from "./HeaderStyle";
 import cart from "../../images/cart.svg";
-import { useAppDispatch, useAppSelector } from "../../redux-hooks";
 import { userInfoisAuthSelectors } from "../../features/users/users-selectors";
 import { logOut } from "../../features/users/users-slice";
 function Header() {

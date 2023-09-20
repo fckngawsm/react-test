@@ -112,7 +112,7 @@ const GoodsSlice = createSlice({
       .addCase(deleteProductById.fulfilled, (state, action) => {
         state.status = "received";
         const newProduct = state.list.filter(
-          (item) => item.id != action.payload.id
+          (item) => item.id !== action.payload.id
         );
 
         state.list = newProduct;
