@@ -1,9 +1,9 @@
 export type UserType = {
   readonly id: number;
+  readonly password?: string | null;
+  readonly email: string;
   name: string;
   lastname: string;
-  email: string;
   isAdmin: boolean;
-  password?: string | null;
   token: string;
 };

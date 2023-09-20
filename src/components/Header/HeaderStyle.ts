@@ -14,7 +14,7 @@ export const HeaderNavigation = styled.nav`
 `;
 
 export const HeaderLinksInfo = styled.div`
-  width: 200px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
 `;

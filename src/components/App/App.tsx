@@ -12,6 +12,8 @@ import ProfileOrder from "../Profile/ProfileAdminUsers";
 import ProfileUsersList from "../Profile/ProfileAdminOrder";
 import ProfileAdminUsers from "../Profile/ProfileAdminUsers";
 import ProfileAdminOrder from "../Profile/ProfileAdminOrder";
+import Cart from "../Cart/Cart";
+import CartList from "../CartList/CartList";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,7 +22,7 @@ function App() {
     if (jwt) {
       dispatch(checkAuth(jwt));
     }
-  }, [dispatch]);
+  }, []);
   return (
     <div className="page">
       <main className="main">
@@ -33,6 +35,7 @@ function App() {
             <Route path="order" element={<ProfileAdminOrder />} />
             <Route path="users" element={<ProfileAdminUsers />} />
           </Route>
+          <Route path="/cart" element={<CartList />} />
         </Routes>
       </main>
     </div>
