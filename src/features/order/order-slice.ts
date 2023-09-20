@@ -37,6 +37,27 @@ export const loadingAllOrder = createAsyncThunk<
   }
 );
 
+export const createOrder = createAsyncThunk<
+  OrderType[],
+  Pick<OrderType, "address" | "phone">,
+  { extra: Extra; rejectWithValue: string }
+>(
+  "@@order/create-order",
+  async (data, { extra: { client, api }, rejectWithValue }) => {
+    const jwt = localStorage.getItem("jwt");
+    try {
+      const res = await client.post(api.LOADING_ALL_ORDER, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      return res.data.data;
+    } catch (err) {
+      return rejectWithValue("Ошибка");
+    }
+  }
+);
 const OrderSlice = createSlice({
   name: "@@order",
   initialState,

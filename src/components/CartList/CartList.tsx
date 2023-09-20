@@ -4,6 +4,7 @@ import { cartListSelectors } from "../../features/cart/cart-selectors";
 import Cart from "../Cart/Cart";
 import { loadingUserCart } from "../../features/cart/cart-slice";
 import { CartListButton, WrapperCartList } from "./CartListStyle";
+import Order from "../Order/Order";
 
 function CartList() {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ function CartList() {
       {cart.map((item) => (
         <Cart key={item.id} {...item} />
       ))}
-      <CartListButton>Оформить заказ</CartListButton>
+      <Order />
     </WrapperCartList>
   );
 }
