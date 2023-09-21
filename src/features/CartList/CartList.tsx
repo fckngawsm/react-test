@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux-hooks";
-import { cartListSelectors } from "../../features/cart/cart-selectors";
-import { loadingUserCart } from "../../features/cart/cart-slice";
+import { cartListSelectors } from "../cart/cart-selectors";
+import { loadingUserCart } from "../cart/cart-slice";
 import { WrapperCartList, CartIsEmpty } from "./CartListStyle";
-import Order from "../Order/Order";
-import Cart from "../Cart/Cart";
+import Order from "../../components/Order/Order";
+import Cart from "../../components/Cart/Cart";
 
 function CartList() {
   const dispatch = useAppDispatch();

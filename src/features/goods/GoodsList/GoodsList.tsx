@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux-hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux-hooks";
 import { SubmitHandler } from "react-hook-form";
 import { GoodsListWrapper } from "./GoodsListStyles";
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCard from "../../../components/ProductCard/ProductCard";
 import {
   loadingAllGoods,
   updateProductById,
-} from "../../features/goods/goods-slice";
-import { addItemTocart } from "../../features/cart/cart-slice";
-import { goodsListSelectors } from "../../features/goods/goods-selectors";
-import { GoodsType } from "../../types/goodsType";
-import Popup from "../Popup/Popup";
+} from "../goods-slice";
+import { addItemTocart } from "../../cart/cart-slice";
+import { goodsListSelectors } from "../goods-selectors";
+import { GoodsType } from "../../../types/goodsType";
+import Popup from "../../../components/Popup/Popup";
 
 function GoodsList() {
   const [popupOpen, setPopupOpen] = useState(false);

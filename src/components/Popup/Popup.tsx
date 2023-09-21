@@ -13,7 +13,7 @@ import {
   AuthInput,
   AuthMessageError,
   AuthTitle,
-} from "../Auth/AuthStyles";
+} from "../../features/users/Auth/AuthStyles";
 import { GoodsType } from "../../types/goodsType";
 
 interface PopupProps {

@@ -10,11 +10,11 @@ import {
   AuthSpan,
   AuthMessageError,
 } from "./AuthStyles";
-import { useAppDispatch } from "../../redux-hooks";
-import { UserType } from "../../types/userType";
-import { loginUser } from "../../features/users/users-slice";
+import { useAppDispatch } from "../../../redux-hooks";
+import { UserType } from "../../../types/userType";
+import { registerUser } from "../users-slice";
 
-function Login() {
+function Register() {
   const dispatch = useAppDispatch();
   const navgiate = useNavigate();
   const {
@@ -23,17 +23,42 @@ function Login() {
     formState: { errors },
   } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    console.log(data);
-    dispatch(loginUser(data))
+    dispatch(registerUser(data))
       .unwrap()
       .then(() => {
-        navgiate("/goods");
+        navgiate("/sign-in");
       });
   };
   return (
     <>
-      <AuthTitle>Вход</AuthTitle>
+      <AuthTitle>Регистрация</AuthTitle>
       <AuthForm onSubmit={handleSubmit(onSubmit)}>
+        <AuthInput
+          autoComplete="none"
+          placeholder="Имя"
+          {...register("name", {
+            required: { value: true, message: "Вы забыли указать почту" },
+            minLength: { value: 2, message: "Слишком короткая почта" },
+            maxLength: { value: 40, message: "Слишком длинная почта" },
+          })}
+          type="text"
+        />
+        {errors.name && (
+          <AuthMessageError>{errors.name.message}</AuthMessageError>
+        )}
+        <AuthInput
+          autoComplete="none"
+          placeholder="Фамилия"
+          {...register("lastname", {
+            required: { value: true, message: "Вы забыли указать почту" },
+            minLength: { value: 2, message: "Слишком короткая почта" },
+            maxLength: { value: 40, message: "Слишком длинная почта" },
+          })}
+          type="text"
+        />
+        {errors.lastname && (
+          <AuthMessageError>{errors.lastname.message}</AuthMessageError>
+        )}
         <AuthInput
           autoComplete="none"
           placeholder="Почта"
@@ -60,14 +85,14 @@ function Login() {
         {errors.password && (
           <AuthMessageError>{errors.password.message}</AuthMessageError>
         )}
-        <AuthButton>Войти</AuthButton>
+        <AuthButton>Зарегистрироваться</AuthButton>
         <AuthText>
-          У вас нет аккаунта?
-          <AuthSpan to="/sign-up">Зарегистрироваться</AuthSpan>
+          У вас есть аккаунт?
+          <AuthSpan to="/sign-in">Войти</AuthSpan>
         </AuthText>
       </AuthForm>
     </>
   );
 }
 
-export default Login;
+export default Register;
