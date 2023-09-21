@@ -8,7 +8,7 @@ import Header from "../Header/Header";
 import GoodsList from "../../features/goods/GoodsList/GoodsList";
 import ProfileAdminUsers from "../Profile/ProfileAdminUsers";
 import ProfileAdminOrder from "../Profile/ProfileAdminOrder";
-import CartList from "../../features/CartList/CartList";
+import CartList from "../../features/cart/CartList/CartList";
 import ProfileAdminAddProduct from "../Profile/ProfileAdminAddProduct";
 import { checkAuth } from "../../features/users/users-slice";
 import { jwt } from "../../constants/constants";

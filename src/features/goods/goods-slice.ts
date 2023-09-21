@@ -5,13 +5,13 @@ import { GoodsType } from "../../types/goodsType";
 import { current } from "@reduxjs/toolkit";
 import { jwt } from "../../constants/constants";
 
-type AuthInitialState = {
+type GoodsInitialState = {
   list: GoodsType[];
   status: StatusType;
   error: string | null;
 };
 
-const initialState: AuthInitialState = {
+const initialState: GoodsInitialState = {
   list: [],
   status: "idle",
   error: null,

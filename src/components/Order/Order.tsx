@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { OrderType } from "../../types/orderType";
 import { useAppDispatch } from "../../redux-hooks";
 import { createOrder } from "../../features/order/order-slice";
-import { CartListButton } from "../../features/CartList/CartListStyle";
+import { CartListButton } from "../../features/cart/CartList/CartListStyle";
 import { useNavigate } from "react-router-dom";
 import { clearUserCart } from "../../features/cart/cart-slice";
 import { OrderDetails, OrderForm, OrderInput, OrderSubtitle, OrderTitle, WrapperOrderList } from "./OrderStyle";
