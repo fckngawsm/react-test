@@ -23,7 +23,6 @@ function Login() {
     formState: { errors },
   } = useForm<UserType>();
   const onSubmit: SubmitHandler<UserType> = (data) => {
-    console.log(data);
     dispatch(loginUser(data))
       .unwrap()
       .then(() => {

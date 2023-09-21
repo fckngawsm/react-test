@@ -13,7 +13,6 @@ import { currentUserInfo } from "../../features/users/users-selectors";
 
 function ProfileAdmin() {
   const currentUser = useAppSelector(currentUserInfo);
-  console.log(currentUser);
   return (
     <SectionWrapper>
       <WrapperInformation>

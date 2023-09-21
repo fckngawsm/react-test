@@ -38,7 +38,6 @@ function GoodsList() {
   };
 
   function handleAddItemToCart(id: number) {
-    console.log(id);
     dispatch(addItemTocart(id));
   }
 

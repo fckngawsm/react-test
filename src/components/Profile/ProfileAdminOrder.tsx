@@ -23,9 +23,6 @@ function ProfileAdminOrder() {
     if (orders.length === 0) dispatch(loadingAllOrder());
   }, [dispatch]);
   {
-    orders.map(({ Products }) => {
-      console.log({ Products });
-    });
   }
   return (
     <ProfileMainInfo>

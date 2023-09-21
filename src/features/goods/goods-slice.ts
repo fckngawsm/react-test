@@ -107,7 +107,6 @@ const GoodsSlice = createSlice({
       .addCase(loadingAllGoods.fulfilled, (state, action) => {
         state.status = "received";
         state.list = action.payload;
-        console.log(state.list);
       })
       .addCase(deleteProductById.fulfilled, (state, action) => {
         state.status = "received";
@@ -117,11 +116,9 @@ const GoodsSlice = createSlice({
 
         state.list = newProduct;
       })
-      .addCase(updateProductById.fulfilled, (state, action) => {
+      .addCase(updateProductById.fulfilled, (state) => {
         state.error = null;
         state.status = "received";
-        const list = state.list;
-        console.log(current(list));
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.list.push(action.payload);
